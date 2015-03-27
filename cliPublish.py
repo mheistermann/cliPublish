@@ -24,18 +24,29 @@ import subprocess
 import urllib.parse
 import configparser
 
+
 class InputError(Exception):
     pass
+
 
 class UploadError(Exception):
     pass
 
+
 def upload(filename, rsync_remote):
     rsync_path = shutil.which('rsync')
-    proc = subprocess.Popen([rsync_path, '--progress', '--protect-args', filename, rsync_remote])
+    proc = subprocess.Popen([
+        rsync_path,
+        '--progress',
+        '--protect-args',
+        filename,
+        rsync_remote])
+
     proc.communicate()
+
     if proc.returncode != 0:
         raise UploadError()
+
 
 def readConfig():
     config = configparser.ConfigParser()
@@ -46,14 +57,19 @@ def readConfig():
     if len(remotes) == 0:
         raise InputError('No remote defined, please edit config.')
     if len(remotes) > 1:
-        print("Warning: more than one remote defined, using the first one", file=sys.stderr)
+        print("Warning: more than one remote defined, using the first one",
+              file=sys.stderr)
 
     return config[remotes[0]]
 
+
 def main():
-    parser = argparse.ArgumentParser(description='Upload a file and show its URL')
-    parser.add_argument('file', type=str, help='the file to upload')
-    parser.add_argument('remoteName', type=str, nargs='?', help='filename on the remote server')
+    parser = argparse.ArgumentParser(
+        description='Upload a file and show its URL')
+    parser.add_argument('file', type=str,
+                        help='the file to upload')
+    parser.add_argument('remoteName', type=str, nargs='?',
+                        help='filename on the remote server')
     args = parser.parse_args()
 
     remote_name = args.remoteName or os.path.split(args.file)[-1]
