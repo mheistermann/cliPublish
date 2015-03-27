@@ -37,8 +37,9 @@ and is available under the terms of the GPL v3.
 
 ## Ideas
 
+* Automatic copy to clipboard
 * Support multiple servers in config, select using optional argument
-* Warn/Stop/Backup if remote filename already exists
+* Warn/stop/backup if remote filename already exists
 * Upload multiple files at once, creating a directory with an index.html
 
 ## Contributing
