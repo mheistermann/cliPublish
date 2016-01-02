@@ -41,6 +41,7 @@ def upload(filename, rsync_remote):
         '--protect-args', # no space-splitting; wildcard chars only
         '--copy-links',   # transform symlink into referent file/dir
                           # (useful for git-annex files)
+        '--chmod=F644,D755',
         filename,
         rsync_remote])
 
