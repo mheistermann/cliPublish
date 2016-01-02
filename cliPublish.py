@@ -38,7 +38,9 @@ def upload(filename, rsync_remote):
     proc = subprocess.Popen([
         rsync_path,
         '--progress',
-        '--protect-args',
+        '--protect-args', # no space-splitting; wildcard chars only
+        '--copy-links',   # transform symlink into referent file/dir
+                          # (useful for git-annex files)
         filename,
         rsync_remote])
 
