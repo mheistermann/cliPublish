@@ -7,7 +7,7 @@ See also: https://packaging.python.org/en/latest/distributing.html
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
+from setuptools import setup
 # To use a consistent encoding
 from codecs import open
 from os import path
@@ -24,7 +24,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.1.0',
+    version='0.1.1',
 
     description='Convenient commandline utility to publish files on a webserver using rsync',
     keywords='rsync upload cli',
@@ -53,5 +53,8 @@ setup(
         'console_scripts': [
             'cliPublish=cliPublish:main',
         ],
+    },
+    package_data={
+        'cliPublish': ['README.md', 'doc/remotes.conf'],
     },
 )
