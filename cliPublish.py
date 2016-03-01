@@ -66,7 +66,7 @@ def readConfig():
     return config[remotes[0]]
 
 
-def main():
+def cli():
     parser = argparse.ArgumentParser(
         description='Upload a file and show its URL')
     parser.add_argument('file', type=str,
@@ -90,10 +90,14 @@ def main():
     return 0
 
 
-if __name__ == '__main__':
+
+def main():
     try:
-        ret = main()
+        ret = cli()
     except InputError as e:
         print('Input error: ' + e.message, file=sys.stderr)
         ret = 1
     sys.exit(ret)
+
+if __name__ == '__main__':
+    main()
