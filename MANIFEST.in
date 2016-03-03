@@ -1,2 +1,2 @@
 include README.md
-include doc/remotes.conf
+include cliPublish/remotes.conf.example

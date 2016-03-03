@@ -7,7 +7,7 @@ See also: https://packaging.python.org/en/latest/distributing.html
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup
+from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
@@ -20,11 +20,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='cliPublish',
-
-    # Versions should comply with PEP440.  For a discussion on single-sourcing
-    # the version across setup.py and the project code, see
-    # https://packaging.python.org/en/latest/single_source_version.html
-    version='0.1.2',
+    version='0.2.0',
 
     description='Convenient commandline utility to publish files on a webserver using rsync',
     keywords='rsync upload cli',
@@ -44,8 +40,7 @@ setup(
         'Programming Language :: Python :: 3 :: Only',
     ],
 
-
-    py_modules=['cliPublish'],
+    packages=find_packages(),
 
     install_requires=[],
 
@@ -55,7 +50,7 @@ setup(
         ],
     },
     package_data={
-        'cliPublish': ['README.md', 'doc/remotes.conf'],
+        'cliPublish': ['README.md', 'cliPublish/remotes.conf'],
     },
     include_package_data=True,
 )

@@ -24,6 +24,8 @@ import subprocess
 import urllib.parse
 import configparser
 
+package_root = os.path.abspath(os.path.dirname(__file__))
+example_path = os.path.join(package_root, 'remotes.conf.example')
 
 class InputError(Exception):
     pass
@@ -54,8 +56,13 @@ def upload(filename, rsync_remote):
 def readConfig():
     config = configparser.ConfigParser()
     config_path = os.path.expanduser('~/.config/cliPublish/remotes.conf')
-    with open(config_path) as fp:
-        config.read_file(fp)
+    try:
+        with open(config_path) as fp:
+            config.read_file(fp)
+    except FileNotFoundError:
+        raise InputError("Warning: config file not found at {}.\nThere is an example config at {}.".format(config_path, example_path))
+
+
     remotes = config.sections()
     if len(remotes) == 0:
         raise InputError('No remote defined, please edit config.')
@@ -68,7 +75,8 @@ def readConfig():
 
 def cli():
     parser = argparse.ArgumentParser(
-        description='Upload a file and show its URL')
+        description='Upload a file and show its URL.\n',
+        epilog='Sample config location is {}'.format(example_path))
     parser.add_argument('file', type=str,
                         help='the file to upload')
     parser.add_argument('remoteName', type=str, nargs='?',

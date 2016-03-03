@@ -8,7 +8,7 @@ at.
 
 ## Usage
 You need to create a small config file in `~/.config/cliPublish/remotes.conf`.
-There is an example file in [doc/remotes.conf](doc/remotes.conf).
+There is an example file in [cliPublish/remotes.conf.example](cliPublish/remotes.conf.example).
 
 ## Example
 
