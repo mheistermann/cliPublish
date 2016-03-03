@@ -1,4 +1,5 @@
 # cliPublish
+[![Build Status](https://travis-ci.org/mheistermann/cliPublish.svg?branch=master)](https://travis-ci.org/mheistermann/cliPublish)
 
 ## Introduction
 
