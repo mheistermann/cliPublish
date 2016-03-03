@@ -1,0 +1,16 @@
+language: python
+python:
+    - 3.3
+    - 3.4
+    - 3.5
+env:
+  - TOXENV=py33
+  - TOXENV=py34
+  - TOXENV=py35
+  - TOXENV=pypy3
+
+install:
+  - pip3 install -U tox
+
+script:
+  - tox
