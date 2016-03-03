@@ -6,6 +6,12 @@ Based on https://github.com/pypa/sampleproject
 See also: https://packaging.python.org/en/latest/distributing.html
 """
 
+import sys
+
+if sys.version_info.major < 3:
+    raise Exception("Python2 is not supported, install with pip3.")
+
+
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 # To use a consistent encoding
@@ -20,7 +26,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='cliPublish',
-    version='0.2.0',
+    version='0.2.1',
 
     description='Convenient commandline utility to publish files on a webserver using rsync',
     keywords='rsync upload cli',
